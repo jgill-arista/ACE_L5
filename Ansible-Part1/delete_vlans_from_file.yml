@@ -3,5 +3,4 @@
   tasks: 
   - name: Create VLANs from file
     eos_config:
-      src: vlans.cfg
-    state: deleted
+      src: delete_vlans.cfg
