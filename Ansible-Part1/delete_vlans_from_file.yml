@@ -1,6 +1,6 @@
 - hosts: all
   gather_facts: no
   tasks: 
-  - name: Create VLANs from file
+  - name: Delete VLANs from file
     eos_config:
       src: delete_vlans.cfg
