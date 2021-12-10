@@ -8,7 +8,4 @@ interface {{ item }}
 
 router bgp {{ underlay[inventory_hostname]['ASN'] }}
 router-id {{ underlay[inventory_hostname]['interfaces']['loopback0']['ipv4'] }}
-{% for peer in underlay[inventory_hostname]['spine-peers'] %}
-  neighbor {{ peer }} peer group SPINE_Underlay
-{% endfor %}
   redistribute connected route-map LOOPBACK
