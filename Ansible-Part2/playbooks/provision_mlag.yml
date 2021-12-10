@@ -1,0 +1,22 @@
+---
+- hosts: mlag_left
+  gather_facts: no
+  tasks:
+  - name: Create template
+    template:
+      src: "{{lookup('env','PWD')}}/templates/mlag-left.j2"
+      dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
+  - name: Upload config
+    eos_config:
+      src: "{{lookup('env', 'PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
+
+- hosts: mlag_right
+  gather_facts: no
+  tasks:
+  - name: Create template
+    template:
+      src: "{{lookup('env','PWD')}}/templates/mlag-right.j2"
+      dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
+  - name: Upload config
+    eos_config:
+      src: "{{lookup('env', 'PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
