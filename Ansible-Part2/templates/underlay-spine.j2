@@ -1,11 +1,20 @@
 {% for item in underlay[inventory_hostname]['interfaces'] %}
 interface {{ item }}
-  ip address {{ underlay[inventory_hostname]['interfaces'][item]['ipv4'] }}/{{ underlay[inventory_hostname]['interfaces'][item]['mask']}}
-{% if 'Ethernet' in item %}
+  {% if 'Ethernet' in item %}
   no switchport
-{% endif %}
+  {% endif %}
+  ip address {{ underlay[inventory_hostname]['interfaces'][item]['ipv4'] }}/{{ underlay[inventory_hostname]['interfaces'][item]['mask']}}
 {% endfor %}
 
 router bgp {{ underlay[inventory_hostname]['ASN'] }}
-router-id {{ underlay[inventory_hostname]['interfaces']['loopback0']['ipv4'] }}
+  router-id {{ underlay[inventory_hostname]['interfaces']['loopback0']['ipv4'] }}
+  no bgp default ipv4 unicast
+  maximum-paths 3
+  distance bgp 20 200 200
+  neighbor SPINE_Underlay peer group
+  neighbor SPINE_Underlay send-community
+  neighbor SPINE_Underlay maximum-routes 12000
+  {% for peer in underlay[inventory_hostname]['spine-peers'] %}
+  neighbor {{ underlay[inventory_hostname]['spine-peers'][peer]['ipv4'] }} peer group SPINE_Underlay
+  {% endfor %}
   redistribute connected route-map LOOPBACK
