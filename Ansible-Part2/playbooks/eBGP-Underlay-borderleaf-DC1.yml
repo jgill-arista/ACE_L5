@@ -1,0 +1,12 @@
+---
+- hosts: borderleaf[1:2]-DC1
+  gather_facts: no
+  tasks:
+  - name: Register variables
+    include_vars:
+      file: "{{lookup('env','PWD')}}/vars/underlay.yml"
+      name: underlay
+  - name: Create a configuration
+    template:
+      src: "{{lookup('env', 'PWD')}}/templates/underlay-leaf.j2"
+      dest: "{{lookup('env', 'PWD')}}/configs/{{inventory_hostname}}_underlay.cfg"
