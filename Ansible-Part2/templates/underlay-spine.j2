@@ -30,7 +30,6 @@ router bgp {{ underlay[inventory_hostname]['ASN'] }}
   neighbor LEAF_Underlay send-community
   neighbor LEAF_Underlay maximum-routes 12000
 
-  neighbor {{ underlay[inventory_hostname]['leaf-peers'][0] }} peer group LEAF_Peer
   redistribute connected route-map LOOPBACK
   
   address-family ipv4
