@@ -14,6 +14,7 @@ ip prefix-list PL-LOOPBACK
   seq 20 permit 192.168.102.0/24 eq 32
   seq 30 permit 192.168.201.0/24 eq 32
   seq 40 permit 192.168.202.0/24 eq 32
+  seq 50 permit 192.168.253.0/24 eq 32
 
 route-map RM-LOOPBACK permit 10
   match ip address prefix-list PL-LOOPBACK

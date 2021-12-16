@@ -1,3 +1,22 @@
+#DCI
+dci:
+  interfaces:
+    loopback0:
+      ipv4: 192.168.253.1
+      mask: 32
+    Ethernet1:
+      ipv4: 192.168.254.1
+      mask: 31
+    Ethernet2:
+      ipv4: 192.168.254.3
+      mask: 31
+    Ethernet3:
+      ipv4: 192.168.254.5
+      mask: 31
+    Ethernet4:
+      ipv4: 192.168.254.7
+      mask: 31
+  ASN: 65000
 #DC1
 spine1-DC1:
   interfaces:
@@ -89,6 +108,7 @@ leaf1-DC1:
       ipv4: 192.168.103.4
       mask: 31
   ASN: 65101
+  SpineASN: 65100
   spine-peers:
     spine1:
       ipv4: 192.168.103.1
@@ -116,6 +136,7 @@ leaf2-DC1:
       ipv4: 192.168.103.10
       mask: 31
   ASN: 65101
+  SpineASN: 65100
   spine-peers:
     spine1:
       ipv4: 192.168.103.7
@@ -143,6 +164,7 @@ leaf3-DC1:
       ipv4: 192.168.103.16
       mask: 31
   ASN: 65102
+  SpineASN: 65100
   spine-peers:
     spine1:
       ipv4: 192.168.103.13
@@ -170,6 +192,7 @@ leaf4-DC1:
       ipv4: 192.168.103.22
       mask: 31
   ASN: 65102
+  SpineASN: 65100
   spine-peers:
     spine1:
       ipv4: 192.168.103.19
@@ -200,6 +223,7 @@ borderleaf1-DC1:
       ipv4: 192.168.254.0
       mask: 31
   ASN: 65103
+  SpineASN: 65100
   spine-peers:
     spine1:
       ipv4: 192.168.103.25
@@ -230,6 +254,7 @@ borderleaf2-DC1:
       ipv4: 192.168.254.2
       mask: 31
   ASN: 65103
+  SpineASN: 65100
   spine-peers:
     spine1:
       ipv4: 192.168.103.31
@@ -332,6 +357,7 @@ leaf1-DC2:
       ipv4: 192.168.203.4
       mask: 31
   ASN: 65201
+  SpineASN: 65200
   spine-peers:
     spine1:
       ipv4: 192.168.203.1
@@ -359,6 +385,7 @@ leaf2-DC2:
       ipv4: 192.168.203.10
       mask: 31
   ASN: 65201
+  SpineASN: 65200
   spine-peers:
     spine1:
       ipv4: 192.168.203.7
@@ -386,6 +413,7 @@ leaf3-DC2:
       ipv4: 192.168.203.16
       mask: 31
   ASN: 65202
+  SpineASN: 65200
   spine-peers:
     spine1:
       ipv4: 192.168.203.13
@@ -413,6 +441,7 @@ leaf4-DC2:
       ipv4: 192.168.203.22
       mask: 31
   ASN: 65202
+  SpineASN: 65200
   spine-peers:
     spine1:
       ipv4: 192.168.203.19
@@ -443,6 +472,7 @@ borderleaf1-DC2:
       ipv4: 192.168.254.4
       mask: 31
   ASN: 65203
+  SpineASN: 65200
   spine-peers:
     spine1:
       ipv4: 192.168.203.25
@@ -473,6 +503,7 @@ borderleaf2-DC2:
       ipv4: 192.168.254.6
       mask: 31
   ASN: 65203
+  SpineASN: 65200
   spine-peers:
     spine1:
       ipv4: 192.168.203.31

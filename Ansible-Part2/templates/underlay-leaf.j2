@@ -2,6 +2,7 @@
 interface {{ item }}
 {% if 'Ethernet' in item %}
   no switchport
+  mtu 9214
 {% endif %}
   ip address {{ underlay[inventory_hostname]['interfaces'][item]['ipv4'] }}/{{ underlay[inventory_hostname]['interfaces'][item]['mask']}}
 {% endfor %}
@@ -23,17 +24,19 @@ router bgp {{ underlay[inventory_hostname]['ASN'] }}
   maximum-paths 3
   distance bgp 20 200 200
   neighbor SPINE_Underlay peer group
-  neighbor SPINE_Underlay send-community
+  neighbor SPINE_Underlay remote-as {{ underlay[inventory_hostname]['SpineASN'] }}
   neighbor SPINE_Underlay maximum-routes 12000
 {% for peer in underlay[inventory_hostname]['spine-peers'] %}
   neighbor {{ underlay[inventory_hostname]['spine-peers'][peer]['ipv4'] }} peer group SPINE_Underlay
 {% endfor %}
   neighbor LEAF_Peer peer group
+  neighbor LEAF_Peer remote-as {{ underlay[inventory_hostname]['ASN'] }}
+  neighbor LEAF_Peer next-hop-self
   neighbor LEAF_Peer send-community
   neighbor LEAF_Peer maximum-routes 12000
   neighbor {{ underlay[inventory_hostname]['leaf-peers'][0] }} peer group LEAF_Peer
-  redistribute connected route-map LOOPBACK
-  
+  redistribute connected route-map RM-LOOPBACK
+
   address-family ipv4
     neighbor SPINE_Underlay activate
     neighbor LEAF_Peer activate
