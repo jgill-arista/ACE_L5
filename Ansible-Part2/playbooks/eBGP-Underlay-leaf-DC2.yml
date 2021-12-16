@@ -10,3 +10,6 @@
     template:
       src: "{{lookup('env', 'PWD')}}/templates/underlay-leaf.j2"
       dest: "{{lookup('env', 'PWD')}}/configs/{{inventory_hostname}}_underlay.cfg"
+  - name: Upload configuration
+    eos_config:
+      src: "{{ lookup('env', 'PWD') }}/configs/{{ inventory_hostname }}_underlay.cfg"  

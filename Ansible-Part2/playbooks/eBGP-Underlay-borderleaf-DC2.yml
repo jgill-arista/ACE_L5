@@ -1,5 +1,5 @@
 ---
-- hosts: spines_DC1
+- hosts: borderleaf[1:2]-DC2
   gather_facts: no
   tasks:
   - name: Register variables
@@ -8,7 +8,7 @@
       name: underlay
   - name: Create a configuration
     template:
-      src: "{{lookup('env', 'PWD')}}/templates/underlay-spine.j2"
+      src: "{{lookup('env', 'PWD')}}/templates/underlay-leaf.j2"
       dest: "{{lookup('env', 'PWD')}}/configs/{{inventory_hostname}}_underlay.cfg"
   - name: Upload configuration
     eos_config:
