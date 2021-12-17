@@ -24,7 +24,7 @@ router bgp {{ underlay[inventory_hostname]['ASN'] }}
   maximum-paths 3
   distance bgp 20 200 200
   neighbor SPINE_Underlay peer group
-  neighbor SPINE_Underlay remote-as {{ underlay[inventory_hostname]['SpineASN'] }}
+  neighbor SPINE_Underlay remote-as {{ SpineASN }}
   neighbor SPINE_Underlay maximum-routes 12000
 {% for peer in underlay[inventory_hostname]['spine-peers'] %}
   neighbor {{ underlay[inventory_hostname]['spine-peers'][peer]['ipv4'] }} peer group SPINE_Underlay

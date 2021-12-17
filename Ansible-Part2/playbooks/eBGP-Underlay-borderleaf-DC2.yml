@@ -1,6 +1,8 @@
 ---
 - hosts: borderleaf[1:2]-DC2
   gather_facts: no
+  vars:
+    - SpineASN: 65200
   tasks:
   - name: Register variables
     include_vars:

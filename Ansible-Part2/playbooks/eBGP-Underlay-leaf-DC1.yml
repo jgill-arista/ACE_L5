@@ -1,6 +1,8 @@
 ---
 - hosts: leafs_DC1
   gather_facts: no
+  vars:
+    - SpineASN: 65100
   tasks:
   - name: Register variables
     include_vars:
