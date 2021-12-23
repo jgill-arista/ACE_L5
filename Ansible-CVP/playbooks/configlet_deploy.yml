@@ -5,6 +5,7 @@
   gather_facts: no
   vars:
     path: "{{lookup('env','PWD')}}"
+    # When the CVP_CONFIGLETS var below is commented out, the task will still find the CVP.yml file in group_vars/, which includes MLAG_Left and _Right configs
     #    CVP_CONFIGLETS:
     #      test_config_upload: "{{lookup('file','{{path}}/configs/alias1.cfg')}}"
     #      common_aliases: "{{lookup('file','{{path}}/configs/common_aliases.cfg')}}"
